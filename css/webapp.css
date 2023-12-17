@@ -1,0 +1,195 @@
+*{
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.container {
+    max-width: 1230px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+
+.num {
+    flex: 0 0 40px;/*40*/
+}
+.fio {
+    /* flex: 1 1 auto; */
+    flex: 0 1 280px;
+}
+.work {
+    flex: 0 1 280px;/*200*/
+    /* flex: 1 1 auto; */
+}
+.phone {
+    flex: 0 1 260px;/*250*/
+    /* flex: 1 1 auto; */
+}
+.email {
+    flex: 0 1 230px;/*220*/
+    /* flex: 1 1 auto; */
+    word-wrap: break-word;
+}
+.action{
+    flex: 0 1 100px;
+}
+.body .row:first-child{
+    border-top: 1px solid #ccc;
+}
+.row{
+    flex-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.head{
+    margin-bottom:20px;
+    position: relative;
+    user-select: none;
+}
+.body .row{
+    color:#777;
+    border-bottom:1px solid #ccc;    
+    cursor:pointer;
+    user-select: none;
+}
+.body .row:hover{
+    background-color:#eee;
+    color:#000;
+}
+
+.body .row--last{
+    border:none;
+}
+.body .row--last:hover{
+    background-color:#fff;
+    color:#777;
+    cursor:default;
+}
+
+.body[data-state="addition"] .row--last{
+    display:none;
+}
+
+.cell{
+    padding:10px;
+    font-size: 14px;
+    overflow:hidden;
+}
+
+.isDeleted .cell{
+    color:red;
+    transition: all .3s ease;
+}
+.cell.action{
+    cursor:default;
+}
+.isDeleted .cell.action{
+    color: #777;
+    text-decoration: none;
+    font-size: 14px;
+}
+.row::after{
+    content: '';
+    width: 85%;
+    height: 1px;
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s ease;
+}
+.row.isDeleted::after{
+    background-color: red;
+    visibility: visible;
+    opacity: 1;
+}
+.cell.action .del{
+    display: inline-flex;
+    flex: 0 0 20px;    
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+}
+.cell.action .del:after{
+    content: '\2716';
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.cell.action .add{
+    display:inline-block;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    cursor:pointer;
+
+}
+.cell.action .add:before{
+    content:"\2716";
+    position: absolute;
+    top:0;
+    left:0;
+    transform:rotateZ(45deg);
+    transition:transform 0.3s ease;
+}
+.cell.action .add:hover:before{
+    transform:rotateZ(45deg) scale(1.2);
+    color:#000;
+}
+
+.isDeleted .cell.action .del:after{
+    content: '\21BA';
+    font-size: initial;
+}
+
+@media screen and (max-width: 620px){
+    .head{
+        display: none;
+    }
+    .body{
+        margin-top: 20px;
+    }
+    .row{
+        display: block;
+        flex-direction: column;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+    .number{
+        display: none;
+    }
+    .fio{
+        width: 100%;
+        font-size: 1.2em;
+    }
+    .work{
+        width: 100%;
+    }
+    .phone {
+        width: 100%;
+        text-align: right;
+        font-size: 1em;
+        font-weight: 600;
+    }
+    .email{
+        width: 100%;
+        text-align: right;
+    }
+    .cell{
+        padding: 5px 10px;
+    }
+    .row.isDeleted::after{
+        content: '';
+        width: 100%;
+        height: 1px;
+        background-color: red;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: rotate(10deg);
+    }
+}
